@@ -1,0 +1,40 @@
+<%- include('./partials/header') %>
+
+<main>
+    <div class="container">
+
+      <%if(locals.mensagem){%>
+        <p><%=locals.mensagem%></p>
+        <%}%>
+
+        <h2>Login</h2>
+
+        <form action='/login' method="post">
+          <div class="form-group">
+                <label for="email">Email</label>
+                <input
+                  type="text"
+                  name="email"
+                  id="email"
+                  class="form-control"
+                />
+              </div>
+              <div class="form-group">
+                <label for="senha">Senha</label>
+                <input
+                  type="password"
+                  name="senha"
+                  id="senha"
+                  class="form-control"
+                />
+              </div>
+
+            <button class="btn btn-primary">Registrar</button>
+        </form>
+    </div>
+
+</main>
+
+
+
+<%- include('./partials/footer') %>
