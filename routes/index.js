@@ -4,11 +4,13 @@ const router = express.Router();
 const homeController = require('../controllers/homeController');
 const adminController = require('../controllers/adminController');
 
+const auth = require('../middlewares/auth')
+
 
 router.get('/', homeController.index);
 router.post('/contato', homeController.contato);
 router.get('/newsletter', homeController.newsletter);
 
-router.get('/admin', adminController.index);
+router.get('/admin', auth, adminController.index);
 
 module.exports = router;

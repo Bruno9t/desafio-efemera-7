@@ -3,6 +3,7 @@ const fs = require('fs');
 
 const homeController = {
   index: (req, res) => {
+    req.session.user = ''
     let servicos = [
       {nome: 'Dev full stack', imagem: '/imagens/undraw_dev_focus.svg'},
       {nome: 'Consultoria UX', imagem: '/imagens/undraw_mobile_apps.svg'},

@@ -15,11 +15,11 @@ const adminController = {
     listaContato = JSON.parse(listaContato);
 
 
-    res.render('admin', { title: 'Painel de controle', listaNewsletter, listaContato });
+    res.render('admin', { title: 'Painel de controle', listaNewsletter, listaContato,user:req.session.user});
   },
 
 show(req,res){
-
+  req.session.user = ''
   res.render('cadastro',{title:'Cadastro'})
 
 },store(req,res){
@@ -52,6 +52,8 @@ show(req,res){
   },
 
   showLogin(req,res){
+    req.session.user = ''
+    
     res.render('login',{title:'Login'})
   },
 
@@ -66,6 +68,8 @@ show(req,res){
     let users = fs.readFileSync(fileUser,{encoding:'utf-8'})
     users = JSON.parse(users)
 
+    
+
     let user = users.filter(us=>{
       return us.email==email
     })
@@ -74,7 +78,13 @@ show(req,res){
 
       if(bcrypt.compareSync(senha,user[0].senhaC)){
 
-        return res.redirect('/')
+        req.session.user = {
+          nome:user[0].nome,
+          email,
+        }
+
+        console.log('passei aqui')
+        return res.redirect('/admin')
   
       }else{
   
